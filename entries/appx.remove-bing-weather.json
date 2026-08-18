@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-bing-weather",
+  "version": "1.0.0",
+  "title": "移除 Bing 天气",
+  "description": "移除 Microsoft Bing Weather 预装 Appx。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.BingWeather"] }
+}

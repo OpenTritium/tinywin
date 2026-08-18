@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.cleanup-components",
+  "version": "1.0.0",
+  "title": "清理组件存储",
+  "description": "执行 StartComponentCleanup 释放组件存储空间。",
+  "category": "Servicing",
+  "risk": "Medium",
+  "handler": "Dism.ComponentCleanup",
+  "phase": "MountedImage",
+  "parameters": { "resetBase": false }
+}

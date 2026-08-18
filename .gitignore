@@ -1,0 +1,16 @@
+# Windows installation media and mounted source files
+/raw/
+
+# Generated images, logs, and intermediate build artifacts
+/out/
+
+# Read-only shallow clone used for reference during development
+/.reference/
+
+# .NET and PowerShell local artifacts
+**/bin/
+**/obj/
+.tools/
+.vs/
+*.user
+*.suo

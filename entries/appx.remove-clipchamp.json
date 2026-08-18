@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-clipchamp",
+  "version": "1.0.0",
+  "title": "移除 Clipchamp",
+  "description": "移除 Clipchamp 预装 Appx。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Clipchamp.Clipchamp"] }
+}

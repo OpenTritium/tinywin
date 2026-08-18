@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-get-help",
+  "version": "1.0.0",
+  "title": "移除获取帮助",
+  "description": "移除 Microsoft Get Help 预装 Appx。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.GetHelp"] }
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-consumer-features",
+  "version": "1.0.0",
+  "title": "禁用消费者体验",
+  "description": "阻止 Windows 自动安装推荐的消费者应用。",
+  "category": "Policies",
+  "risk": "Low",
+  "handler": "Registry.SetOfflineValue",
+  "phase": "MountedImage",
+  "parameters": {
+    "hive": "SOFTWARE",
+    "key": "Policies\\Microsoft\\Windows\\CloudContent",
+    "name": "DisableWindowsConsumerFeatures",
+    "type": "DWord",
+    "value": 1
+  }
+}

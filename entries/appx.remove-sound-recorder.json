@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-sound-recorder",
+  "version": "1.0.0",
+  "title": "移除录音机",
+  "description": "移除 Windows Sound Recorder 预装 Appx。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.WindowsSoundRecorder"] }
+}

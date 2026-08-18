@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-zune-music",
+  "version": "1.0.0",
+  "title": "移除媒体播放器",
+  "description": "移除 Zune Music 预装 Appx。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.ZuneMusic"] }
+}

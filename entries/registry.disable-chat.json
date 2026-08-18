@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-chat",
+  "version": "1.0.0",
+  "title": "隐藏聊天入口",
+  "description": "将 Windows Chat 图标设置为隐藏。",
+  "category": "Policies",
+  "risk": "Low",
+  "handler": "Registry.SetOfflineValue",
+  "phase": "MountedImage",
+  "parameters": {
+    "hive": "SOFTWARE",
+    "key": "Policies\\Microsoft\\Windows\\Windows Chat",
+    "name": "ChatIcon",
+    "type": "DWord",
+    "value": 3
+  }
+}

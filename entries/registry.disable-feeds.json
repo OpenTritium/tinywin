@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-feeds",
+  "version": "1.0.0",
+  "title": "禁用资讯与兴趣",
+  "description": "禁用 Windows Feeds 入口。",
+  "category": "Policies",
+  "risk": "Low",
+  "handler": "Registry.SetOfflineValue",
+  "phase": "MountedImage",
+  "parameters": {
+    "hive": "SOFTWARE",
+    "key": "Policies\\Microsoft\\Windows\\Windows Feeds",
+    "name": "EnableFeeds",
+    "type": "DWord",
+    "value": 0
+  }
+}

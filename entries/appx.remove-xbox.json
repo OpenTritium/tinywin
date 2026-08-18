@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-xbox",
+  "version": "1.0.0",
+  "title": "移除 Xbox 组件",
+  "description": "移除 Xbox 相关预装 Appx。",
+  "category": "Applications",
+  "risk": "Medium",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.Xbox*"] }
+}

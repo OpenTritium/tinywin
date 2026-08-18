@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-power-automate",
+  "version": "1.0.0",
+  "title": "移除 Power Automate",
+  "description": "移除 Microsoft Power Automate Desktop 预装 Appx。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.PowerAutomateDesktop"] }
+}

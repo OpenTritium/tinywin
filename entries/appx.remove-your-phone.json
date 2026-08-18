@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-your-phone",
+  "version": "1.0.0",
+  "title": "移除手机连接",
+  "description": "移除 Microsoft Your Phone 预装 Appx。",
+  "category": "Applications",
+  "risk": "Medium",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.YourPhone"] }
+}

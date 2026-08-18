@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TinyWin.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TinyWin.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-suggested-apps",
+  "version": "1.0.0",
+  "title": "禁用推荐应用安装",
+  "description": "阻止默认用户配置自动安装推荐应用。",
+  "category": "Policies",
+  "risk": "Low",
+  "handler": "Registry.SetOfflineValue",
+  "phase": "MountedImage",
+  "parameters": {
+    "hive": "DEFAULT",
+    "key": "Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+    "name": "SilentInstalledAppsEnabled",
+    "type": "DWord",
+    "value": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-zune-video",
+  "version": "1.0.0",
+  "title": "移除电影和电视",
+  "description": "移除 Zune Video 预装 Appx。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.ZuneVideo"] }
+}

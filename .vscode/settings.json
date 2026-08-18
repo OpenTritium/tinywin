@@ -1,0 +1,28 @@
+{
+  "powershell.scriptAnalysis.enable": true,
+  "powershell.scriptAnalysis.settingsPath": "${workspaceFolder}/PSScriptAnalyzerSettings.psd1",
+  "powershell.codeFormatting.preset": "Custom",
+  "powershell.codeFormatting.useCorrectCasing": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+  "powershell.codeFormatting.whitespaceAfterOpenBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeCloseBrace": true,
+  "powershell.codeFormatting.whitespaceAfterCloseBrace": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": true,
+  "powershell.codeFormatting.newLineAfterOpenBrace": true,
+  "powershell.codeFormatting.newLineAfterCloseBrace": true,
+  "powershell.codeFormatting.whitespaceAfterSeparator": true,
+  "powershell.codeFormatting.addWhitespaceAroundPipe": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["/entries/**/*.json"],
+      "url": "./schemas/entry.schema.json"
+    }
+  ],
+  "[powershell]": {
+    "editor.defaultFormatter": "ms-vscode.powershell",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    }
+  }
+}
