@@ -10,6 +10,7 @@
 # .NET and PowerShell local artifacts
 **/bin/
 **/obj/
+**/artifacts/
 .tools/
 .vs/
 *.user

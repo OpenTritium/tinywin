@@ -9,4 +9,12 @@
     <RootNamespace>TinyWin.Host</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <PublishAot>true</PublishAot>
+    <SelfContained>true</SelfContained>
+    <PublishTrimmed>true</PublishTrimmed>
+    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+    <StripSymbols>true</StripSymbols>
+  </PropertyGroup>
+
 </Project>

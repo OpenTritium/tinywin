@@ -11,11 +11,18 @@ $repositoryRoot = Split-Path -Parent $PSScriptRoot
 & (Join-Path $PSScriptRoot 'ensure-pwsh-tools.ps1') | Out-Null
 Import-Module PSScriptAnalyzer -Force -ErrorAction Stop
 
-$resolvedPaths = @($Path | ForEach-Object { Join-Path $repositoryRoot $_ })
 $settingsPath = Join-Path $repositoryRoot 'PSScriptAnalyzerSettings.psd1'
+$files = @($Path | ForEach-Object {
+        $pathRoot = Join-Path $repositoryRoot $_
+        if (Test-Path -LiteralPath $pathRoot -PathType Leaf) {
+            Get-Item -LiteralPath $pathRoot
+        } else {
+            Get-ChildItem -LiteralPath $pathRoot -Filter *.ps1 -File -Recurse
+        }
+    }) | Where-Object FullName -NotMatch '[\\/](bin|obj|artifacts)[\\/]'
 $results = [List[object]]::new()
-foreach ($resolvedPath in $resolvedPaths) {
-    foreach ($result in @(Invoke-ScriptAnalyzer -Path $resolvedPath -Recurse -Settings $settingsPath)) {
+foreach ($file in $files) {
+    foreach ($result in @(Invoke-ScriptAnalyzer -Path $file.FullName -Settings $settingsPath)) {
         $results.Add($result)
     }
 }
@@ -36,7 +43,3 @@ if ($errorCount -gt 0) {
     exit 1
 }
 exit 0
-
-
-
-

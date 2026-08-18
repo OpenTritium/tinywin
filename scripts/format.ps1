@@ -20,7 +20,7 @@ $files = @($Path | ForEach-Object {
         } else {
             Get-ChildItem -LiteralPath $pathRoot -Filter *.ps1 -File -Recurse
         }
-    })
+    }) | Where-Object FullName -NotMatch '[\\/](bin|obj|artifacts)[\\/]'
 $changedFiles = [List[string]]::new()
 foreach ($file in $files) {
     $original = Get-Content -LiteralPath $file.FullName -Raw -ErrorAction Stop
@@ -28,10 +28,12 @@ foreach ($file in $files) {
     $normalized = [regex]::Replace($original, "`r`n|`r|`n", "`n")
     $formatted = Invoke-Formatter -ScriptDefinition $normalized -Settings $settingsPath
     $formatted = [regex]::Replace($formatted, "`r`n|`r|`n", $lineEnding)
+    $formatted = $formatted -replace '(?:\r\n|\r|\n)+$', ''
+    $formatted += $lineEnding
     if ($formatted -ne $original) {
         $changedFiles.Add($file.FullName)
         if (-not $Check) {
-            Set-Content -LiteralPath $file.FullName -Value $formatted -Encoding utf8NoBOM
+            Set-Content -LiteralPath $file.FullName -Value $formatted -Encoding utf8NoBOM -NoNewline
         }
     }
 }
@@ -47,7 +49,3 @@ if ($Check) {
 }
 
 $changedFiles | ForEach-Object { Write-Output "Formatted: $_" }
-
-
-
-

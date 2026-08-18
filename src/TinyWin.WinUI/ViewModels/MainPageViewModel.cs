@@ -37,6 +37,15 @@ public partial class MainPageViewModel : ObservableObject
     [ObservableProperty]
     public partial string BuildLog { get; set; } = string.Empty;
 
+    [ObservableProperty]
+    public partial int SelectedEntryCount { get; set; }
+
+    public string EntryCountSummary => $"{Entries.Count} 个可用条目";
+
+    public string SelectionSummary => SelectedEntryCount == 0
+        ? "尚未选择条目"
+        : $"已选择 {SelectedEntryCount} 个条目";
+
     public MainPageViewModel()
         : this(new EntryCatalog(), new TinyWinBuildRunner())
     {
@@ -55,6 +64,15 @@ public partial class MainPageViewModel : ObservableObject
     private async Task RefreshEntriesAsync()
     {
         await LoadEntriesAsync();
+    }
+
+    [RelayCommand]
+    private void ClearSelection()
+    {
+        foreach (var entry in Entries.Where(entry => entry.IsSelected))
+        {
+            entry.IsSelected = false;
+        }
     }
 
     [RelayCommand(CanExecute = nameof(CanBuild))]
@@ -121,6 +139,8 @@ public partial class MainPageViewModel : ObservableObject
                 Entries.Add(entry);
             }
 
+            UpdateSelectionSummary();
+            OnPropertyChanged(nameof(EntryCountSummary));
             BuildCommand.NotifyCanExecuteChanged();
             Status = Entries.Count == 0 ? "没有找到精简条目。" : $"已加载 {Entries.Count} 个精简条目，请勾选要执行的项目。";
         }
@@ -135,8 +155,15 @@ public partial class MainPageViewModel : ObservableObject
     {
         if (args.PropertyName == nameof(TinyWinEntry.IsSelected))
         {
+            UpdateSelectionSummary();
             BuildCommand.NotifyCanExecuteChanged();
         }
+    }
+
+    private void UpdateSelectionSummary()
+    {
+        SelectedEntryCount = Entries.Count(entry => entry.IsSelected);
+        OnPropertyChanged(nameof(SelectionSummary));
     }
 
     private void OnBuildOutput(object? sender, BuildOutputEventArgs args)

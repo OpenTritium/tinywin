@@ -21,7 +21,7 @@ DISM / offline registry / Windows imaging cmdlets
 
 | Layer | Responsibility | Must not do |
 | --- | --- | --- |
-| `TinyWin.WinUI` | Discover Entry metadata, let users select entries, show logs and status | Call DISM, modify a WIM, or interpret handler parameters |
+| `TinyWin.WinUI` | Discover Entry metadata, let users select entries, show logs and status, invoke `scripts/build.ps1` | Call DISM, modify a WIM, or interpret handler parameters |
 | `TinyWin.Host` | Locate the checkout and relay arguments to `pwsh` | Contain slimming policy or UI logic |
 | `scripts/build.ps1` | Map process arguments to the module public API | Implement image operations or selection rules |
 | `src/TinyWin/Public` | Expose catalog, plan and build APIs | Depend on WinUI types |
@@ -43,6 +43,10 @@ handler, phase, parameters, optional requires/conflicts
 The process-facing adapter accepts comma-separated Entry IDs in one `-EntryId` argument. The module API accepts a `string[]`, so hosts and automation can retain structured selections.
 
 Complex implementations live under `entry-handlers/`. Their metadata remains in `entries/`, preserving the separation between model/data and executable code.
+
+## Desktop delivery
+
+The WinUI application is a self-contained Windows App SDK deployment. Its Release configuration uses Native AOT, trimming, stripped symbols, and speed-oriented native-code optimization. A released MSIX therefore runs without a separately installed .NET SDK, .NET runtime, or Windows App Runtime. The UI launches `pwsh scripts/build.ps1` directly so the optional .NET Host stays an independent command-line adapter rather than a desktop-app dependency.
 
 ## Plan lifecycle
 

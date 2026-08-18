@@ -16,25 +16,25 @@ public sealed class TinyWinBuildRunner
     public async Task<BuildResult> RunAsync(BuildRequest request, CancellationToken cancellationToken)
     {
         var repositoryRoot = RepositoryLocator.FindRoot();
-        var hostProject = Path.Combine(repositoryRoot, "src", "TinyWin.Host", "TinyWin.Host.csproj");
-        if (!File.Exists(hostProject))
+        var buildScript = Path.Combine(repositoryRoot, "scripts", "build.ps1");
+        if (!File.Exists(buildScript))
         {
-            throw new FileNotFoundException("TinyWin host project was not found.", hostProject);
+            throw new FileNotFoundException("TinyWin build script was not found.", buildScript);
         }
 
         var startInfo = new ProcessStartInfo
         {
-            FileName = "dotnet",
+            FileName = Environment.GetEnvironmentVariable("PWSH_PATH") ?? "pwsh.exe",
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             CreateNoWindow = true,
             WorkingDirectory = repositoryRoot
         };
-        startInfo.ArgumentList.Add("run");
-        startInfo.ArgumentList.Add("--project");
-        startInfo.ArgumentList.Add(hostProject);
-        startInfo.ArgumentList.Add("--");
+        startInfo.ArgumentList.Add("-NoLogo");
+        startInfo.ArgumentList.Add("-NoProfile");
+        startInfo.ArgumentList.Add("-File");
+        startInfo.ArgumentList.Add(buildScript);
         startInfo.ArgumentList.Add("-SourcePath");
         startInfo.ArgumentList.Add(request.SourcePath);
         startInfo.ArgumentList.Add("-ImageIndex");

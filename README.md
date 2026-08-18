@@ -56,6 +56,20 @@ dotnet run --project ./src/TinyWin.Host -- `
 pwsh ./scripts/start-ui.ps1
 ```
 
+WinUI 调用同一份 `scripts/build.ps1`，不依赖 `TinyWin.Host` 或本机 .NET SDK。正式发布使用自包含 AOT：目标机器只需满足 Windows 版本要求，无需安装 .NET Runtime、SDK 或 Windows App Runtime。
+
+生成 x64 Release MSIX：
+
+```powershell
+dotnet build ./src/TinyWin.WinUI/TinyWin.WinUI.csproj `
+  -c Release `
+  -p:Platform=x64 `
+  -p:GenerateAppxPackageOnBuild=true `
+  -p:AppxPackageDir=artifacts\msix\
+```
+
+输出位于 `src/TinyWin.WinUI/artifacts/`，该目录已被 Git 忽略。Release 配置默认启用 Native AOT、裁剪、self-contained 部署和速度优先优化。
+
 先使用 `-WhatIf` 检查选中的构建目标。成功后，`out/TinyWin-*/tinywin-manifest.json` 会记录 Entry 版本和哈希、每个处理器的执行状态、事件日志以及最终 WIM 的 SHA-256。
 
 ## PowerShell LSP、格式化与 lint
