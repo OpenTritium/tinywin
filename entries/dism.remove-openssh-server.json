@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-openssh-server",
+  "version": "1.0.0",
+  "title": "移除 OpenSSH Server",
+  "description": "移除 SSH 远程登录服务和服务端组件。",
+  "category": "Networking",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["OpenSSH.Server~~~~0.0.1.0"]
+  }
+}

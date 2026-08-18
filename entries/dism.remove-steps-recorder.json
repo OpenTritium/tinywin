@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-steps-recorder",
+  "version": "1.0.0",
+  "title": "移除问题步骤记录器",
+  "description": "移除 Steps Recorder 故障记录工具。",
+  "category": "Utilities",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["App.StepsRecorder~~~~0.0.1.0"]
+  }
+}

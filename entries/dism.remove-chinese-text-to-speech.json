@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-chinese-text-to-speech",
+  "version": "1.0.0",
+  "title": "移除中文文本转语音",
+  "description": "移除简体中文文本转语音引擎。",
+  "category": "Language",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["Language.TextToSpeech~~~zh-CN~0.0.1.0"]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-xps",
+  "version": "1.0.0",
+  "title": "移除 XPS 查看器",
+  "description": "移除 XPS Viewer 功能和按需功能包。",
+  "category": "Documents",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["Xps-Foundation-Xps-Viewer"],
+    "capabilities": ["XPS.Viewer~~~~0.0.1.0"],
+    "removePayload": true
+  }
+}

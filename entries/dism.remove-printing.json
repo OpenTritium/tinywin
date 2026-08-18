@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-printing",
+  "version": "1.0.0",
+  "title": "移除打印与 Microsoft Print to PDF",
+  "description": "移除本地打印客户端、图形打印组件和 Microsoft Print to PDF。",
+  "category": "Devices",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": [
+      "Printing-Client",
+      "Printing-Client-Gui",
+      "Printing-PrintToPDFServices-Features",
+      "Microsoft-Windows-Printing-PremiumTools"
+    ],
+    "removePayload": true
+  }
+}

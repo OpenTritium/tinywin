@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-paint",
+  "version": "1.0.0",
+  "title": "移除画图",
+  "description": "移除 Microsoft Paint 按需功能包。",
+  "category": "Utilities",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["Microsoft.Windows.MSPaint~~~~0.0.1.0"]
+  }
+}

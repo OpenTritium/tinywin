@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-wmic",
+  "version": "1.0.0",
+  "title": "移除 WMIC",
+  "description": "移除已弃用的 WMIC 命令行工具；自动化应改用 PowerShell CIM。",
+  "category": "Legacy",
+  "risk": "Medium",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["WMIC~~~~"]
+  }
+}

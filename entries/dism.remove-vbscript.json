@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-vbscript",
+  "version": "1.0.0",
+  "title": "移除 VBScript",
+  "description": "移除 VBScript 引擎；遗留登录脚本和 .vbs 自动化将无法运行。",
+  "category": "Legacy",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["VBSCRIPT~~~~"]
+  }
+}

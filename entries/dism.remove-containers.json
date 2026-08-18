@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-containers",
+  "version": "1.0.0",
+  "title": "移除 Windows Containers",
+  "description": "移除 Windows 容器、Host Networking Service 与软件定义网络组件。",
+  "category": "Virtualization",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["Containers", "Containers-HNS", "Containers-SDN"],
+    "removePayload": true
+  }
+}

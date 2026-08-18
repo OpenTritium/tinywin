@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-windows-defender",
+  "version": "1.0.0",
+  "title": "移除 Microsoft Defender 与 Sense",
+  "description": "移除 Defender 功能和 Defender for Endpoint Sense 客户端；明确保留 UAC 与 Windows 防火墙。",
+  "category": "Security",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["Windows-Defender"],
+    "capabilities": ["Microsoft.Windows.Sense.Client~~~~"],
+    "removePayload": true
+  }
+}

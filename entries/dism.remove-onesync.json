@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-onesync",
+  "version": "1.0.0",
+  "title": "移除 OneSync",
+  "description": "移除邮件、日历和联系人使用的 OneSync 框架。",
+  "category": "Applications",
+  "risk": "Medium",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["OneCoreUAP.OneSync~~~~0.0.1.0"]
+  }
+}

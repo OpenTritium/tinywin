@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-snipping-tool",
+  "version": "1.0.0",
+  "title": "移除截图工具",
+  "description": "移除 Snipping Tool 按需功能包。",
+  "category": "Utilities",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["Microsoft.Windows.SnippingTool~~~~0.0.1.0"]
+  }
+}

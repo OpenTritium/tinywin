@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-server-backup",
+  "version": "1.0.0",
+  "title": "移除 Windows Server Backup",
+  "description": "移除 Windows Server Backup 管理单元和可选功能。",
+  "category": "Server",
+  "risk": "Medium",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["WindowsServerBackup", "WindowsServerBackupSnapin"],
+    "removePayload": true
+  }
+}

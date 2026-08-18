@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-openssh-client",
+  "version": "1.0.0",
+  "title": "移除 OpenSSH 客户端",
+  "description": "移除 ssh、scp 等 OpenSSH 客户端工具。",
+  "category": "Networking",
+  "risk": "Medium",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["OpenSSH.Client~~~~0.0.1.0"]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-chinese-handwriting",
+  "version": "1.0.0",
+  "title": "移除中文手写识别",
+  "description": "移除简体中文手写识别按需功能；保留基础中文显示与输入。",
+  "category": "Language",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["Language.Handwriting~~~zh-CN~0.0.1.0"]
+  }
+}

@@ -4,6 +4,8 @@
 
 详细设计见 [架构说明](docs/architecture.md)。
 
+仓库中提供的 Windows Server 2025 Evaluation 镜像盘点、保留边界和新增精简项见 [Server 2025 镜像盘点](docs/server-2025-analysis.md)。
+
 ## 前置条件
 
 - Windows 上以管理员身份运行 PowerShell 7.4+。

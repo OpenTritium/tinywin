@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-powershell-ise",
+  "version": "1.0.0",
+  "title": "移除 PowerShell ISE",
+  "description": "移除遗留 PowerShell ISE；PowerShell 7 和 Windows PowerShell 控制台不受影响。",
+  "category": "Developer",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0"]
+  }
+}

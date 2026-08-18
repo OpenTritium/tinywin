@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-wsl",
+  "version": "1.0.0",
+  "title": "移除 Windows Subsystem for Linux",
+  "description": "移除 WSL 与其虚拟机平台依赖；Linux 发行版将无法运行。",
+  "category": "Virtualization",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["Microsoft-Windows-Subsystem-Linux", "VirtualMachinePlatform"],
+    "removePayload": true
+  }
+}

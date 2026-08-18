@@ -1,8 +1,9 @@
 function Get-TinyWinEntryHandlerMap {
     return @{
-        'Appx.RemoveProvisioned'   = 'Invoke-TinyWinAppxRemove'
-        'Registry.SetOfflineValue' = 'Invoke-TinyWinRegistrySet'
-        'Dism.ComponentCleanup'    = 'Invoke-TinyWinComponentCleanup'
+        'Appx.RemoveProvisioned'       = 'Invoke-TinyWinAppxRemove'
+        'Registry.SetOfflineValue'     = 'Invoke-TinyWinRegistrySet'
+        'Dism.ComponentCleanup'        = 'Invoke-TinyWinComponentCleanup'
+        'Dism.RemoveOptionalComponent' = 'Invoke-TinyWinOptionalComponentRemove'
     }
 }
 

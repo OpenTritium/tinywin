@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-windows-terminal",
+  "version": "1.0.0",
+  "title": "移除 Windows Terminal",
+  "description": "移除预装 Windows Terminal；PowerShell 和命令提示符仍保留。",
+  "category": "Applications",
+  "risk": "Medium",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.WindowsTerminal"] }
+}

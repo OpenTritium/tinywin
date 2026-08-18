@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-security-health-ui",
+  "version": "1.0.0",
+  "title": "移除 Windows 安全中心界面",
+  "description": "移除 Microsoft.SecHealthUI 预装界面；不影响 UAC 或 Windows 防火墙服务。",
+  "category": "Security",
+  "risk": "High",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["Microsoft.SecHealthUI"] }
+}
