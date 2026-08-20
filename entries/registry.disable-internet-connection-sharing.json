@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-internet-connection-sharing",
+  "version": "1.0.0",
+  "title": "禁用 Internet 连接共享",
+  "description": "禁用 Internet Connection Sharing (SharedAccess)。移动热点和网络连接共享将不可用。",
+  "category": "Network Services",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["SharedAccess"]
+  }
+}

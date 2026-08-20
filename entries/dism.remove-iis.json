@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-iis",
+  "version": "1.0.0",
+  "title": "移除 Internet Information Services",
+  "description": "移除 IIS Web Server Role 和 Hostable Web Core payload；无法再部署 IIS 网站或依赖该 Web Core 的应用。",
+  "category": "Server Roles",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["IIS-WebServerRole", "IIS-HostableWebCore"],
+    "removePayload": true
+  }
+}

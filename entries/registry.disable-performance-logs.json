@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-performance-logs",
+  "version": "1.0.0",
+  "title": "禁用性能日志服务",
+  "description": "禁用 Performance Logs & Alerts；Data Collector Set 和依赖 PLA 的性能采集将不可用。",
+  "category": "Diagnostics",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["pla"]
+  }
+}

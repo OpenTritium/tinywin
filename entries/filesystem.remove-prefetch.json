@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "filesystem.remove-prefetch",
+  "version": "1.0.0",
+  "title": "移除 Prefetch 缓存",
+  "description": "移除离线镜像中已有的 Windows Prefetch 缓存；系统启动后会重新生成，首次启动和应用冷启动可能变慢。",
+  "category": "Servicing",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Filesystem.RemovePath",
+  "phase": "MountedImage",
+  "parameters": { "paths": ["Windows/Prefetch"] }
+}

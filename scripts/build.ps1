@@ -19,6 +19,11 @@ param(
 
     [switch]$CreateIso,
 
+    [ValidateSet('Auto', 'Wim', 'Esd')]
+    [string]$ImageFormat = 'Auto',
+
+    [switch]$Fast,
+
     [string]$OscdimgPath,
 
     [switch]$KeepWorkspace

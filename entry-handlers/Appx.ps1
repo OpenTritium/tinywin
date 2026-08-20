@@ -19,7 +19,28 @@ function Invoke-TinyWinAppxRemove {
     }
 
     $removedApps = [List[string]]::new()
-    foreach ($package in @(Get-AppxProvisionedPackage -Path $MountPath -ErrorAction Stop)) {
+    $packages = @()
+    try {
+        $packages = @(Get-AppxProvisionedPackage -Path $MountPath -ErrorAction Stop)
+    } catch {
+        # Server editions may not expose the AppX servicing provider at all.
+        # Treat that known capability gap as a skipped optional entry, while
+        # preserving unrelated DISM failures as build errors.
+        $message = [string]$_.Exception.Message
+        $unsupportedAppx = $message -match 'file cannot be used on this computer|该文件当前不能用于此计算机|AppX.*not supported|不支持.*AppX'
+        if (-not $unsupportedAppx) {
+            throw
+        }
+
+        Write-TinyWinLog -Context $Context -Level Warning -Message "Skipping AppX entry '$($Operation.EntryId)': the mounted edition does not expose an AppX servicing provider."
+        return [pscustomobject]@{
+            RemovedApps = @()
+            Skipped     = $true
+            Reason      = 'AppX servicing provider is unavailable for this edition.'
+        }
+    }
+
+    foreach ($package in $packages) {
         if (@($patterns | Where-Object { $package.DisplayName -like $_ }).Count -eq 0) {
             continue
         }

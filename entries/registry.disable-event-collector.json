@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-event-collector",
+  "version": "1.0.0",
+  "title": "禁用 Windows 事件收集器",
+  "description": "禁用 Windows Event Collector (Wecsvc)。订阅式事件转发和集中日志收集将不可用。",
+  "category": "Remote Management",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["Wecsvc"]
+  }
+}

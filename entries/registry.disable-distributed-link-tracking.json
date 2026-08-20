@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-distributed-link-tracking",
+  "version": "1.0.0",
+  "title": "禁用分布式链接跟踪",
+  "description": "禁用 Distributed Link Tracking 客户端和服务器服务；NTFS 文件移动跟踪以及部分域环境链接维护将不可用。",
+  "category": "Background Services",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["TrkWks", "TrkSvr"]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "appx.remove-mail-calendar",
+  "version": "1.0.0",
+  "title": "移除邮件和日历",
+  "description": "移除 Windows Communications Apps 预置包；邮件和日历客户端将不可用。",
+  "category": "Applications",
+  "risk": "Low",
+  "handler": "Appx.RemoveProvisioned",
+  "phase": "MountedImage",
+  "parameters": { "patterns": ["microsoft.windowscommunicationsapps"] }
+}

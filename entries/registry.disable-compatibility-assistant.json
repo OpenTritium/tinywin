@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-compatibility-assistant",
+  "version": "1.0.0",
+  "title": "禁用程序兼容性助手",
+  "description": "禁用 Program Compatibility Assistant；旧程序兼容性提示和自动问题报告将不可用。",
+  "category": "Background Services",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["PcaSvc"]
+  }
+}

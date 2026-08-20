@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-telnet-client",
+  "version": "1.0.0",
+  "title": "移除 Telnet 客户端",
+  "description": "移除 Telnet Client；无法使用遗留 Telnet 终端连接。",
+  "category": "Networking",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["TelnetClient"],
+    "removePayload": true
+  }
+}

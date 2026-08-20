@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-sysmain",
+  "version": "1.0.0",
+  "title": "禁用 SysMain 预取服务",
+  "description": "禁用 SysMain (Superfetch)；可减少后台内存和磁盘活动，但可能降低应用预加载速度。",
+  "category": "Background Services",
+  "risk": "Medium",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["SysMain"]
+  }
+}

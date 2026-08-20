@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-user-data-services",
+  "version": "1.0.0",
+  "title": "禁用用户数据与联系人索引服务",
+  "description": "禁用每用户 UserData、Unistore 和联系人索引服务；邮件、联系人、日历和依赖 Windows 用户数据 API 的应用可能无法工作。",
+  "category": "Background Services",
+  "risk": "High",
+  "selectionTier": "Experimental",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "servicePatterns": ["UserDataSvc_*", "UnistoreSvc_*", "PimIndexMaintenanceSvc_*"]
+  }
+}

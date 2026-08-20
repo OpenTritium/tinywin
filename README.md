@@ -4,6 +4,8 @@
 
 详细设计见 [架构说明](docs/architecture.md)。
 
+DISM++ 与 NTLite 的调研结论及 TinyWin 的后续架构方向见 [调研笔记](docs/research-dismpp-ntlite.md)。
+
 仓库中提供的 Windows Server 2025 Evaluation 镜像盘点、保留边界和新增精简项见 [Server 2025 镜像盘点](docs/server-2025-analysis.md)。
 
 ## 前置条件
@@ -43,6 +45,8 @@ pwsh ./scripts/build.ps1 `
   -CreateIso
 ```
 
+开发迭代可以追加 `-Fast`：中间/最终 WIM 使用 Fast 压缩并跳过 DISM 完整性校验，ESD 直接从修改后的 WIM 导出，适合反复测试。正式发布默认使用 Maximum 压缩和完整性校验；`-Fast` 不应作为最终交付构建的唯一验证。
+
 也可由 .NET 11 入口调用同一 PowerShell 工作流：
 
 ```powershell
@@ -60,6 +64,8 @@ pwsh ./scripts/start-ui.ps1
 
 WinUI 调用同一份 `scripts/build.ps1`，不依赖 `TinyWin.Host` 或本机 .NET SDK。正式发布使用自包含 AOT：目标机器只需满足 Windows 版本要求，无需安装 .NET Runtime、SDK 或 Windows App Runtime。
 
+在 GUI 中通过“选择 ISO…”打开文件选择框。应用读取介质后才会启用“安装映像”下拉框，选项直接来自 `Get-TinyWinImageInfo`；构建只能使用已读取且已选择的真实索引。
+
 生成 x64 Release MSIX：
 
 ```powershell
@@ -73,6 +79,16 @@ dotnet build ./src/TinyWin.WinUI/TinyWin.WinUI.csproj `
 输出位于 `src/TinyWin.WinUI/artifacts/`，该目录已被 Git 忽略。Release 配置默认启用 Native AOT、裁剪、self-contained 部署和速度优先优化。
 
 先使用 `-WhatIf` 检查选中的构建目标。成功后，`out/TinyWin-*/tinywin-manifest.json` 会记录 Entry 版本和哈希、每个处理器的执行状态、事件日志以及最终 WIM 的 SHA-256。
+
+## Hyper-V 冒烟测试
+
+构建 ISO 后可用 Hyper-V 自动执行一次无人值守安装，并通过 PowerShell Direct 验证系统完成 OOBE、可启动且系统盘正常：
+
+```powershell
+pwsh ./scripts/test-hyperv.ps1 -IsoPath ./out/TinyWin-20260819T000000Z.iso
+```
+
+测试需要管理员权限和 Hyper-V；默认不联网，成功后自动清除临时 VM 和磁盘。完整参数、保留现场检查和安全边界见 [Hyper-V 冒烟测试](docs/hyperv-smoke-test.md)。
 
 ## PowerShell LSP、格式化与 lint
 

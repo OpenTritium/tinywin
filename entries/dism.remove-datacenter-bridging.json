@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-datacenter-bridging",
+  "version": "1.0.0",
+  "title": "移除数据中心桥接",
+  "description": "移除 Data Center Bridging 和 LLDP 工具；支持 DCB 的存储和网络适配器将不可用。",
+  "category": "Networking",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["DataCenterBridging", "DataCenterBridging-LLDP-Tools"],
+    "removePayload": true
+  }
+}

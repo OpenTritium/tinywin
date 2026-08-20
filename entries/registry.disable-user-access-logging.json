@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-user-access-logging",
+  "version": "1.0.0",
+  "title": "禁用 User Access Logging",
+  "description": "禁用 User Access Logging Service；Server 角色使用情况和部分授权/使用统计将不再记录。",
+  "category": "Server",
+  "risk": "Medium",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["UALSVC"]
+  }
+}

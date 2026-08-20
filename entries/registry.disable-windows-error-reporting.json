@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-windows-error-reporting",
+  "version": "1.0.0",
+  "title": "禁用 Windows 错误报告服务",
+  "description": "禁用 Windows Error Reporting Service (WerSvc)。应用崩溃后不再收集或提交错误报告。",
+  "category": "Background Services",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["WerSvc"]
+  }
+}

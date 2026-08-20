@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-maps-broker",
+  "version": "1.0.0",
+  "title": "禁用离线地图服务",
+  "description": "禁用 Downloaded Maps Manager (MapsBroker)。离线地图下载与使用将不可用。",
+  "category": "Background Services",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["MapsBroker"]
+  }
+}

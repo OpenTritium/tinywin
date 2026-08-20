@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-diagnostic-tracking",
+  "version": "1.0.0",
+  "title": "禁用诊断跟踪服务",
+  "description": "禁用 Connected User Experiences and Telemetry 服务 (DiagTrack)，避免非必要诊断后台常驻。",
+  "category": "Background Services",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["DiagTrack"]
+  }
+}

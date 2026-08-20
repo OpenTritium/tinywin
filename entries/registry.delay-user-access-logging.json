@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.delay-user-access-logging",
+  "version": "1.0.0",
+  "title": "延迟启动 User Access Logging",
+  "description": "将 User Access Logging Service 设置为延迟自动启动；保留服务器使用统计，但减少开机阶段的服务竞争。",
+  "category": "Server",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.ConfigureOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["UALSVC"],
+    "startMode": "DelayedAuto"
+  },
+  "conflicts": ["registry.disable-user-access-logging"]
+}

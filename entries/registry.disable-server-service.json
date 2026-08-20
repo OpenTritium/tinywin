@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-server-service",
+  "version": "1.0.0",
+  "title": "禁用 Server 文件共享服务",
+  "description": "禁用 LanmanServer；本机不能提供 SMB 文件共享、打印共享或管理共享。",
+  "category": "Networking",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["LanmanServer"]
+  },
+  "conflicts": ["registry.delay-server-service"]
+}

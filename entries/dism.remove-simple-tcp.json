@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-simple-tcp",
+  "version": "1.0.0",
+  "title": "移除简单 TCP/IP 服务",
+  "description": "移除 Simple TCP/IP Services；Echo、Discard、Daytime、Character Generator 和 Quote of the Day 服务不可用。",
+  "category": "Networking",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["SimpleTCP"],
+    "removePayload": true
+  }
+}

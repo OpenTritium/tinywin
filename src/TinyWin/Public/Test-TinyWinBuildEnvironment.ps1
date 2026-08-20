@@ -20,6 +20,8 @@ function Test-TinyWinBuildEnvironment {
             'Export-WindowsImage',
             'Get-AppxProvisionedPackage',
             'Remove-AppxProvisionedPackage',
+            'Get-WindowsPackage',
+            'Remove-WindowsPackage',
             'reg.exe'
         )
         $missingCommands = @($requiredCommands | Where-Object { -not (Get-Command $_ -ErrorAction SilentlyContinue) })

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-snmp",
+  "version": "1.0.0",
+  "title": "移除 SNMP 组件",
+  "description": "移除 SNMP、RSAT SNMP 工具和 WMI SNMP Provider；基于 SNMP 的监控和设备管理将不可用。",
+  "category": "Networking",
+  "risk": "Medium",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["SNMP", "Server-RSAT-SNMP", "WMISnmpProvider"],
+    "removePayload": true
+  }
+}

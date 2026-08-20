@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-server-manager-autostart",
+  "version": "1.0.0",
+  "title": "禁用服务器管理器自动启动",
+  "description": "阻止 Server Manager 在管理员登录时自动启动；程序和管理功能仍可手动使用。",
+  "category": "Background Experience",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.SetOfflineValue",
+  "phase": "MountedImage",
+  "parameters": {
+    "hive": "SOFTWARE",
+    "key": "Microsoft\\ServerManager",
+    "name": "DoNotOpenServerManagerAtLogon",
+    "type": "DWord",
+    "value": 1
+  }
+}

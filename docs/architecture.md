@@ -12,7 +12,7 @@ scripts/build.ps1 (command adapter)
 TinyWin PowerShell module
   Entry catalog -> normalized plan -> handler dispatch
         |
-entry-handlers (Appx, Registry, DISM, custom operations)
+entry-handlers (Appx, Registry, DISM, Package, Filesystem, Driver Store)
         |
 DISM / offline registry / Windows imaging cmdlets
 ```
@@ -34,7 +34,7 @@ DISM / offline registry / Windows imaging cmdlets
 Each JSON entry contains:
 
 ```text
-schemaVersion, id, version, title, description, category, risk,
+schemaVersion, id, version, title, description, category, risk, selectionTier,
 handler, phase, parameters, optional requires/conflicts
 ```
 
@@ -43,6 +43,8 @@ handler, phase, parameters, optional requires/conflicts
 The process-facing adapter accepts comma-separated Entry IDs in one `-EntryId` argument. The module API accepts a `string[]`, so hosts and automation can retain structured selections.
 
 Complex implementations live under `entry-handlers/`. Their metadata remains in `entries/`, preserving the separation between model/data and executable code.
+
+`selectionTier` is `Standard`, `Expert`, or `Experimental`. It controls bulk selection in the UI, not whether an Entry can be selected individually. Entries without the field use `Standard`, except `High` risk entries, which default to `Expert`. This keeps the normal bulk selection useful without hiding an advanced operation from deliberate use.
 
 ## Desktop delivery
 
@@ -57,7 +59,11 @@ The WinUI application is a self-contained Windows App SDK deployment. Its Releas
 5. The image is saved, optimized and optionally converted to a bootable ISO.
 6. The manifest records selected Entry IDs, versions, source hashes, operation results, events and the final WIM hash.
 
+The Hyper-V smoke test also writes a runtime baseline JSON beside its test output. It records process count, total process handles, threads, working set, running-service count and the largest processes after first logon. This makes handle reduction a measurable release criterion rather than an assumption based on the selected Entries.
+
 The plan is generated before the first mutation, so `-WhatIf` can validate selection without creating `out/` or mounting media.
+
+The build path has a deliberate fast mode for iteration: `scripts/build.ps1 -Fast` uses Fast WIM compression, skips expensive image integrity checks, skips the redundant Maximum-WIM export when the final artifact is ESD, and copies installation media with multi-threaded Robocopy. Release/default builds retain Maximum compression and integrity validation.
 
 ## Extensibility rules
 
@@ -66,4 +72,9 @@ The plan is generated before the first mutation, so `-WhatIf` can validate selec
 - Add a dedicated handler for behavior that cannot be represented safely as data.
 - Declare dependencies and conflicts in Entry metadata instead of embedding them in the UI.
 - Keep handlers idempotent where Windows servicing allows it and return structured operation details.
+- Use `Dism.RemovePackage` only for explicitly versioned, experimental package patterns; package removal can make servicing irreversible.
+- Use `Filesystem.RemovePath` only with image-relative paths validated by the handler; never accept arbitrary host paths from Entry JSON.
+- Service entries may use `Registry.DisableOfflineService` for a hard disable or `Registry.ConfigureOfflineService` with `startMode` set to `Manual`, `Auto` or `DelayedAuto`. `servicePatterns` is restricted to registry-safe wildcard names so per-user services such as `WpnUserService_*` can be handled without embedding machine-specific suffixes.
+- Prefer `Manual`/`DelayedAuto` entries when a capability should remain available. Do not claim memory savings from a service entry without measuring shared `svchost` working sets in the Hyper-V smoke test.
+- Treat Driver Store pruning as a High-risk operation: accept only declared INF names and verify each resolved directory stays under the mounted image's `FileRepository`.
 - Put source media, workspaces and generated output only under the ignored `raw/` and `out/` directories.

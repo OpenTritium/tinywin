@@ -25,7 +25,8 @@ public sealed class EntryCatalog
             var description = GetRequiredString(root, "description", entryPath);
             var category = GetRequiredString(root, "category", entryPath);
             var risk = GetRequiredString(root, "risk", entryPath);
-            entries.Add(new TinyWinEntry(id, version, title, description, category, risk));
+            var selectionTier = GetSelectionTier(root, risk, entryPath);
+            entries.Add(new TinyWinEntry(id, version, title, description, category, risk, selectionTier));
         }
 
         return entries.OrderBy(entry => entry.Category).ThenBy(entry => entry.Title).ToArray();
@@ -39,5 +40,19 @@ public sealed class EntryCatalog
         }
 
         return property.GetString()!;
+    }
+
+    private static string GetSelectionTier(JsonElement root, string risk, string path)
+    {
+        var tier = root.TryGetProperty("selectionTier", out var property)
+            ? GetRequiredString(root, "selectionTier", path)
+            : risk == "High" ? "Expert" : "Standard";
+
+        if (tier is not ("Standard" or "Expert" or "Experimental"))
+        {
+            throw new InvalidDataException($"Entry '{path}' has unsupported selectionTier '{tier}'.");
+        }
+
+        return tier;
     }
 }

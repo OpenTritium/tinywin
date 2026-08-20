@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.delay-workstation-service",
+  "version": "1.0.0",
+  "title": "延迟启动 Workstation 服务",
+  "description": "将 LanmanWorkstation 设置为延迟自动启动；保留 SMB 客户端，但开机初期访问网络共享可能稍慢。",
+  "category": "Networking",
+  "risk": "Medium",
+  "selectionTier": "Standard",
+  "handler": "Registry.ConfigureOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["LanmanWorkstation"],
+    "startMode": "DelayedAuto"
+  },
+  "conflicts": ["registry.disable-workstation-service"]
+}

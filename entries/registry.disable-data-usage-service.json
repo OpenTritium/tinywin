@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-data-usage-service",
+  "version": "1.0.0",
+  "title": "禁用数据使用量服务",
+  "description": "禁用 Data Usage 服务；系统设置中的流量统计和部分按流量计费网络数据报告将不可用。",
+  "category": "Network Services",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["DusmSvc"]
+  }
+}

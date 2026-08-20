@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-phone-service",
+  "version": "1.0.0",
+  "title": "禁用 Phone Service",
+  "description": "禁用 Phone Service；Phone Link、移动电话集成和部分移动宽带功能将不可用。",
+  "category": "Background Services",
+  "risk": "Medium",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["PhoneSvc"]
+  }
+}

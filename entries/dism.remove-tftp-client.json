@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-tftp-client",
+  "version": "1.0.0",
+  "title": "移除 TFTP 客户端",
+  "description": "移除 TFTP Client；无法使用无认证 TFTP 传输文件。",
+  "category": "Networking",
+  "risk": "Low",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["TFTP"],
+    "removePayload": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-device-association",
+  "version": "1.0.0",
+  "title": "禁用设备关联服务",
+  "description": "禁用 Device Association Service；USB、蓝牙和其他即插即用设备的配对与自动关联可能失败。",
+  "category": "Devices",
+  "risk": "High",
+  "selectionTier": "Experimental",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["DeviceAssociationService"]
+  }
+}

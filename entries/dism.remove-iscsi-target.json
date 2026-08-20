@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-iscsi-target",
+  "version": "1.0.0",
+  "title": "移除 iSCSI Target 存储提供程序",
+  "description": "移除 iSCSI Target Storage Providers；无法作为 iSCSI 目标提供存储。",
+  "category": "Storage",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["iSCSITargetStorageProviders"],
+    "removePayload": true
+  }
+}

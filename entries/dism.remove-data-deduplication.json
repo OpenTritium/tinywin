@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-data-deduplication",
+  "version": "1.0.0",
+  "title": "移除数据重复删除",
+  "description": "移除 Data Deduplication 服务和 cmdlet；卷数据重复删除、优化和回收任务将不可用。",
+  "category": "Storage",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["Dedup-Core"],
+    "removePayload": true
+  }
+}

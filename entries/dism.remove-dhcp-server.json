@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-dhcp-server",
+  "version": "1.0.0",
+  "title": "移除 DHCP Server",
+  "description": "移除 DHCP 服务器角色及管理工具；本机不能为网络客户端分配 DHCP 地址。",
+  "category": "Server Roles",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["DHCPServer", "DHCPServer-Tools"],
+    "removePayload": true
+  }
+}

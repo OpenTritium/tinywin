@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-braille-support",
+  "version": "1.0.0",
+  "title": "移除 Braille 辅助功能支持",
+  "description": "移除按需安装的 Braille 辅助功能组件；盲文显示器支持将不可用。系统放大镜、讲述人等核心程序不在此条目中强行删除。",
+  "category": "Accessibility",
+  "risk": "Medium",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "capabilities": ["Accessibility.Braille~~~~0.0.1.0"],
+    "removePayload": true
+  }
+}

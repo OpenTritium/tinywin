@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "filesystem.remove-windows-old",
+  "version": "1.0.0",
+  "title": "移除 Windows.old",
+  "description": "移除升级残留的 Windows.old 目录；全新安装媒体通常没有此目录，目录不存在时安全跳过。",
+  "category": "Servicing",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Filesystem.RemovePath",
+  "phase": "MountedImage",
+  "parameters": { "paths": ["Windows.old"] }
+}

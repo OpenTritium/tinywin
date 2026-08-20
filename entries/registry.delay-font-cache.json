@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.delay-font-cache",
+  "version": "1.0.0",
+  "title": "延迟启动字体缓存",
+  "description": "将 Windows Font Cache Service 设置为延迟自动启动；可减少桌面启动阶段的竞争，但首次图形界面启动可能略慢。",
+  "category": "Desktop Experience",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.ConfigureOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["FontCache"],
+    "startMode": "DelayedAuto"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-dfs-replication",
+  "version": "1.0.0",
+  "title": "移除 DFS Replication",
+  "description": "移除 DFS Replication 服务和管理组件；无法参与 DFS 文件夹复制。",
+  "category": "Server Roles",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["DFSR-Infrastructure-ServerEdition", "DfsMgmt", "FRS-Infrastructure"],
+    "removePayload": true
+  }
+}

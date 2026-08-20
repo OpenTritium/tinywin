@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-dotnet-framework-4",
+  "version": "1.0.0",
+  "title": "移除 .NET Framework 4.x",
+  "description": "移除 .NET Framework 4.x、Server 扩展和 ASP.NET 4.x；大量服务器管理工具和应用会无法运行。",
+  "category": "Frameworks",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["NetFx4", "NetFx4ServerFeatures", "NetFx4Extended-ASPNET45"],
+    "removePayload": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-remote-desktop-services",
+  "version": "1.0.0",
+  "title": "禁用远程桌面服务",
+  "description": "禁用远程桌面服务及会话环境服务。RDP 入站连接和远程应用场景将不可用。",
+  "category": "Remote Management",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["TermService", "SessionEnv", "UmRdpService"]
+  }
+}

@@ -50,6 +50,12 @@ function Get-TinyWinEntryCatalog {
             throw "Entry '$entryId' uses unsupported risk '$risk'."
         }
 
+        # High-risk operations must never enter the normal bulk selection implicitly.
+        $selectionTier = if ($document.ContainsKey('selectionTier')) { [string]$document.selectionTier } elseif ($risk -eq 'High') { 'Expert' } else { 'Standard' }
+        if (@('Standard', 'Expert', 'Experimental') -notcontains $selectionTier) {
+            throw "Entry '$entryId' uses unsupported selectionTier '$selectionTier'."
+        }
+
         $phase = [string]$document.phase
         if ($phase -ne 'MountedImage') {
             throw "Entry '$entryId' uses unsupported phase '$phase'."
@@ -70,6 +76,7 @@ function Get-TinyWinEntryCatalog {
                 Description   = [string]$document.description
                 Category      = [string]$document.category
                 Risk          = $risk
+                SelectionTier = $selectionTier
                 Handler       = $handlerName
                 Parameters    = $parameters
                 Requires      = $requires

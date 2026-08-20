@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-smb-direct",
+  "version": "1.0.0",
+  "title": "移除 SMB Direct",
+  "description": "移除 RDMA 上的 SMB Direct；高速 RDMA 文件共享与 Storage Spaces Direct 工作负载会受影响。",
+  "category": "Networking",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["SmbDirect"],
+    "removePayload": true
+  }
+}

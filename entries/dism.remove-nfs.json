@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-nfs",
+  "version": "1.0.0",
+  "title": "移除 Network File System 支持",
+  "description": "移除 NFS 客户端、服务器、管理工具和基础结构；无法连接或托管 NFS 共享。",
+  "category": "Server Roles",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["ClientForNFS-Infrastructure", "ServerForNFS-Infrastructure", "ServicesForNFS-ServerAndClient", "NFS-Administration"],
+    "removePayload": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-storage-replica",
+  "version": "1.0.0",
+  "title": "移除存储副本",
+  "description": "移除 Storage Replica 和管理包；无法使用服务器间块级存储复制。",
+  "category": "Storage",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["Storage-Replica", "Storage-Replica-AdminPack"],
+    "removePayload": true
+  }
+}

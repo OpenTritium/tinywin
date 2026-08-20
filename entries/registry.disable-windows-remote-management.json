@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-windows-remote-management",
+  "version": "1.0.0",
+  "title": "禁用 Windows 远程管理",
+  "description": "禁用 WinRM。PowerShell Remoting、Windows Admin Center 和多数远程服务器管理流程将不可用。",
+  "category": "Remote Management",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["WinRM"]
+  }
+}

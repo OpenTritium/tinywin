@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-connected-devices-platform",
+  "version": "1.0.0",
+  "title": "禁用 Connected Devices Platform",
+  "description": "禁用跨设备体验平台；附近共享、跨设备活动和部分设备配对体验将不可用。",
+  "category": "Background Services",
+  "risk": "Medium",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["CDPSvc", "CDPUserSvc"]
+  }
+}

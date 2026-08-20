@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-workstation-service",
+  "version": "1.0.0",
+  "title": "禁用 Workstation 文件共享客户端",
+  "description": "禁用 LanmanWorkstation；本机不能访问 SMB 文件共享、域登录资源和远程管理共享。",
+  "category": "Networking",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["LanmanWorkstation"]
+  },
+  "conflicts": ["registry.delay-workstation-service"]
+}

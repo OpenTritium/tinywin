@@ -4,4 +4,5 @@ public sealed record BuildRequest(
     string SourcePath,
     int ImageIndex,
     IReadOnlyList<string> EntryIds,
-    bool CreateIso);
+    bool CreateIso,
+    string? OscdimgPath);

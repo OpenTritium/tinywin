@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-edge",
+  "version": "1.0.0",
+  "title": "移除 Microsoft Edge 浏览器",
+  "description": "尝试移除镜像中的 Microsoft Edge CBS 包；Edge 在部分 Server 版本中属于基础包，找不到可移除包时会安全跳过。",
+  "category": "Browser",
+  "risk": "High",
+  "selectionTier": "Experimental",
+  "handler": "Dism.RemovePackage",
+  "phase": "MountedImage",
+  "parameters": {
+    "packagePatterns": ["EdgeChromium", "Microsoft.*Edge"]
+  }
+}

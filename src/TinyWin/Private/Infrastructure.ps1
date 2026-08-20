@@ -21,7 +21,16 @@ function Write-TinyWinLog {
     }
 
     [void]$Context.Events.Add($entry)
-    Write-Host "[$Level] $Message"
+    if ($Context.ContainsKey('SuppressConsoleLog') -and $Context.SuppressConsoleLog) {
+        return
+    }
+
+    $consoleLine = "[$($entry.Timestamp)] [$Level] $Message"
+    if ($Context.ContainsKey('UseConsoleOutput') -and $Context.UseConsoleOutput) {
+        [Console]::Out.WriteLine($consoleLine)
+    } else {
+        Write-Host $consoleLine
+    }
 }
 
 function Invoke-TinyWinNative {
@@ -37,9 +46,15 @@ function Invoke-TinyWinNative {
     )
 
     Write-TinyWinLog -Context $Context -Message "Running: $FilePath $($Arguments -join ' ')"
-    & $FilePath @Arguments
-    if ($LASTEXITCODE -ne 0) {
-        throw "Command failed with exit code ${LASTEXITCODE}: $FilePath"
+    & $FilePath @Arguments 2>&1 | ForEach-Object {
+        $nativeLine = $_.ToString().Trim()
+        if ($nativeLine) {
+            Write-TinyWinLog -Context $Context -Message "  $nativeLine"
+        }
+    }
+    $exitCode = $LASTEXITCODE
+    if ($exitCode -ne 0) {
+        throw "Command failed with exit code ${exitCode}: $FilePath"
     }
 }
 
@@ -81,7 +96,7 @@ function Resolve-TinyWinSource {
     $diskImage = Mount-DiskImage -ImagePath $resolvedPath -PassThru -ErrorAction Stop
     $volume = $diskImage | Get-Volume -ErrorAction Stop | Where-Object DriveLetter | Select-Object -First 1
     if (-not $volume) {
-        Dismount-DiskImage -ImagePath $resolvedPath -ErrorAction SilentlyContinue
+        Dismount-DiskImage -ImagePath $resolvedPath -ErrorAction SilentlyContinue | Out-Null
         throw "No drive letter was assigned when mounting '$resolvedPath'."
     }
 
@@ -124,7 +139,18 @@ function Copy-TinyWinMedia {
         [hashtable]$Context
     )
 
-    Write-TinyWinLog -Context $Context -Message "Copying installation media to $DestinationRoot"
+    Write-TinyWinLog -Context $Context -Message "Copying installation media to $DestinationRoot with 16 workers"
     New-Item -ItemType Directory -Path $DestinationRoot -Force | Out-Null
-    Get-ChildItem -LiteralPath $SourceRoot -Force | Copy-Item -Destination $DestinationRoot -Recurse -Force
+    & robocopy.exe $SourceRoot $DestinationRoot /E /MT:16 /R:1 /W:1 /COPY:DAT /DCOPY:DAT /NFL /NDL /NP 2>&1 |
+        ForEach-Object {
+            $nativeLine = $_.ToString().Trim()
+            if ($nativeLine) {
+                Write-TinyWinLog -Context $Context -Message "  $nativeLine"
+            }
+        }
+    $exitCode = $LASTEXITCODE
+    if ($exitCode -gt 7) {
+        throw "Media copy failed with robocopy exit code ${exitCode}."
+    }
+    Write-TinyWinLog -Context $Context -Message 'Installation media copy completed.'
 }

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-telephony",
+  "version": "1.0.0",
+  "title": "禁用电话服务",
+  "description": "禁用 Telephony 服务；TAPI 调制解调器和传统电话应用将不可用。",
+  "category": "Legacy",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["TapiSrv"]
+  }
+}

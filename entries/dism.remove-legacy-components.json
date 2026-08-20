@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-legacy-components",
+  "version": "1.0.0",
+  "title": "移除旧版组件与 DirectPlay",
+  "description": "移除 Legacy Components 和 DirectPlay；依赖旧版游戏或应用兼容层的软件将无法运行。",
+  "category": "Legacy",
+  "risk": "Medium",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["LegacyComponents", "DirectPlay"],
+    "removePayload": true
+  }
+}

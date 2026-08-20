@@ -43,6 +43,9 @@
     "risk": {
       "enum": ["Low", "Medium", "High"]
     },
+    "selectionTier": {
+      "enum": ["Standard", "Expert", "Experimental"]
+    },
     "handler": {
       "type": "string",
       "pattern": "^[A-Za-z]+(?:\\.[A-Za-z]+)+$"

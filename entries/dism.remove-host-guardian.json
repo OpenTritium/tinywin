@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-host-guardian",
+  "version": "1.0.0",
+  "title": "移除 Host Guardian Service",
+  "description": "移除 Host Guardian Service 及其包；无法部署受防护虚拟机基础结构。",
+  "category": "Virtualization",
+  "risk": "High",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["HostGuardian", "HostGuardianService-Package"],
+    "removePayload": true
+  }
+}

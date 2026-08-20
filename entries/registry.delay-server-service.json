@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.delay-server-service",
+  "version": "1.0.0",
+  "title": "延迟启动 Server 文件共享服务",
+  "description": "将 LanmanServer 设置为延迟自动启动；保留 SMB 文件共享，但登录初期共享可能暂时不可用。",
+  "category": "Networking",
+  "risk": "Medium",
+  "selectionTier": "Standard",
+  "handler": "Registry.ConfigureOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["LanmanServer"],
+    "startMode": "DelayedAuto"
+  },
+  "conflicts": ["registry.disable-server-service"]
+}

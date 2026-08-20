@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "dism.remove-system-insights",
+  "version": "1.0.0",
+  "title": "移除 System Insights",
+  "description": "移除 System Insights 预测分析服务和管理工具；基于历史指标的容量与性能预测将不可用。",
+  "category": "Diagnostics",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Dism.RemoveOptionalComponent",
+  "phase": "MountedImage",
+  "parameters": {
+    "features": ["SystemInsights", "SystemInsightsManagement"],
+    "removePayload": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-edge-background-mode",
+  "version": "1.0.0",
+  "title": "禁止 Edge 后台驻留",
+  "description": "关闭 Edge Startup Boost 和后台模式。浏览器仍保留，但不应在关闭后继续占用后台资源。",
+  "category": "Browser",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.SetOfflineValue",
+  "phase": "MountedImage",
+  "parameters": {
+    "hive": "SOFTWARE",
+    "values": [
+      {
+        "key": "Policies\\Microsoft\\Edge",
+        "name": "StartupBoostEnabled",
+        "type": "DWord",
+        "value": 0
+      },
+      {
+        "key": "Policies\\Microsoft\\Edge",
+        "name": "BackgroundModeEnabled",
+        "type": "DWord",
+        "value": 0
+      }
+    ]
+  }
+}

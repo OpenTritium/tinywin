@@ -10,8 +10,9 @@ function Get-TinyWinImageInfo {
 
     $resolvedPath = (Resolve-Path -LiteralPath $SourcePath -ErrorAction Stop).Path
     $context = @{
-        BuildId = "info-$([Guid]::NewGuid().ToString('N'))"
-        Events  = [List[object]]::new()
+        BuildId            = "info-$([Guid]::NewGuid().ToString('N'))"
+        Events             = [List[object]]::new()
+        SuppressConsoleLog = $true
     }
     $source = $null
     try {
@@ -27,7 +28,7 @@ function Get-TinyWinImageInfo {
             Select-Object ImageIndex, ImageName, ImageDescription, Architecture, Version, EditionId, InstallationType
     } finally {
         if ($source -and $source.IsMounted) {
-            Dismount-DiskImage -ImagePath $source.ImagePath -ErrorAction SilentlyContinue
+            Dismount-DiskImage -ImagePath $source.ImagePath -ErrorAction SilentlyContinue | Out-Null
         }
     }
 }

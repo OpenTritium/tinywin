@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-windows-diagnostics",
+  "version": "1.0.0",
+  "title": "禁用 Windows 诊断主机",
+  "description": "禁用 Diagnostic Policy Service 及其诊断主机；系统网络和故障排查向导将无法自动诊断问题。",
+  "category": "Diagnostics",
+  "risk": "Medium",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["DPS", "WdiServiceHost", "WdiSystemHost"]
+  }
+}

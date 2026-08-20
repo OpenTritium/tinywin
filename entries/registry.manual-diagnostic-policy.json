@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.manual-diagnostic-policy",
+  "version": "1.0.0",
+  "title": "将诊断服务改为按需启动",
+  "description": "将 Diagnostic Policy Service 及诊断主机改为手动启动；保留需要时的故障诊断触发能力，减少开机常驻。与禁用诊断条目冲突。",
+  "category": "Diagnostics",
+  "risk": "Medium",
+  "selectionTier": "Standard",
+  "handler": "Registry.ConfigureOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["DPS", "WdiServiceHost", "WdiSystemHost"],
+    "startMode": "Manual"
+  },
+  "conflicts": ["registry.disable-windows-diagnostics"]
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.disable-print-spooler",
+  "version": "1.0.0",
+  "title": "禁用打印后台处理服务",
+  "description": "禁用 Print Spooler (Spooler)。本地和网络打印、打印到 PDF 将不可用。",
+  "category": "Background Services",
+  "risk": "High",
+  "selectionTier": "Expert",
+  "handler": "Registry.DisableOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["Spooler"]
+  }
+}

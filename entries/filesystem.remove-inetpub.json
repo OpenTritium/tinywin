@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "filesystem.remove-inetpub",
+  "version": "1.0.0",
+  "title": "移除 inetpub 目录",
+  "description": "移除镜像中残留的 IIS inetpub 目录；目录不存在时安全跳过。不会安装或卸载 IIS。",
+  "category": "Server Roles",
+  "risk": "Medium",
+  "handler": "Filesystem.RemovePath",
+  "phase": "MountedImage",
+  "parameters": { "paths": ["inetpub"] }
+}
