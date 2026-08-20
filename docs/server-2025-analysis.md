@@ -78,9 +78,14 @@ Hyper-V、WSL、VirtualMachinePlatform、Windows Containers、IIS、SMB1、Telne
 
 | 目标 | Entry | 模式 |
 | --- | --- | --- |
+| 文本输入管理按需启动 | `registry.manual-text-input` | `Manual` |
 | 诊断服务按需启动 | `registry.manual-diagnostic-policy` | `Manual` |
 | 字体缓存延迟启动 | `registry.delay-font-cache` | `DelayedAuto` |
 | User Access Logging 延迟启动 | `registry.delay-user-access-logging` | `DelayedAuto` |
+
+### 控制台登录阻断验证（2026-08-21）
+
+在 `TinyWin-Extreme-20260820`（Server 2025 Standard Core，148 个条目全量应用）上逐项冷启动验证：禁用 `TextInputManagementService` 是唯一导致 LogonUI 永久停留在“请等待 本地会话管理器”的条目——LogonUI 进程存活且空转约 40% CPU，但从不发起首个 LSM RPC（`RpcGetCurrentSessionCapabilities`），也到不了凭据枚举阶段（不加载 `CredProvDataModel.dll`）。将其改为 `Manual` 后，其余 `disable-sysmain`、`disable-remote-desktop-services`、`disable-workstation-service` 等条目保持禁用状态，控制台仍可在约 20 秒内自动登录。因此 `registry.disable-text-input` 已被 `registry.manual-text-input` 取代；对 SysMain 与 LanmanWorkstation 的早期怀疑属于混淆变量，均已排除。
 
 用户服务名称通常带随机实例后缀，例如 `WpnUserService_486b3`、`cbdhsvc_486b3`。服务 Entry 支持 `servicePatterns`，会在离线 SYSTEM hive 中枚举并匹配这些实例，不会把某台虚拟机的后缀硬编码到镜像。
 

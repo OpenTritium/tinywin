@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "registry.manual-text-input",
+  "version": "1.0.0",
+  "title": "将 Text Input Management 设为按需启动",
+  "description": "将 TextInputManagementService 设为按需启动。Windows Server 2025 上禁用该服务会导致 LogonUI 初始化卡死在“请等待本地会话管理器”，控制台无法登录（已通过 Hyper-V 冷启动冒烟验证），因此不提供彻底禁用选项。",
+  "category": "Desktop Experience",
+  "risk": "Low",
+  "selectionTier": "Standard",
+  "handler": "Registry.ConfigureOfflineService",
+  "phase": "MountedImage",
+  "parameters": {
+    "services": ["TextInputManagementService"],
+    "startMode": "Manual"
+  }
+}
